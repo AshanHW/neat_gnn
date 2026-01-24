@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEAT_GNN", "NEAT_GNN.csproj", "{B2E9F316-B1B0-48FD-BCF5-A593ED94F16E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNEAT", "..\TestNEAT\TestNEAT.csproj", "{31263889-5B08-4D0C-918F-015F5B0C752B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2E9F316-B1B0-48FD-BCF5-A593ED94F16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E9F316-B1B0-48FD-BCF5-A593ED94F16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E9F316-B1B0-48FD-BCF5-A593ED94F16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E9F316-B1B0-48FD-BCF5-A593ED94F16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31263889-5B08-4D0C-918F-015F5B0C752B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31263889-5B08-4D0C-918F-015F5B0C752B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31263889-5B08-4D0C-918F-015F5B0C752B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31263889-5B08-4D0C-918F-015F5B0C752B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E8FCEA5-9E27-49C9-99BC-98EC671D73DE}
+	EndGlobalSection
+EndGlobal
