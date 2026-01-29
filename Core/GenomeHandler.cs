@@ -231,20 +231,18 @@ namespace NEAT_GNN.Core
         public void SelectNewRepresentative()
         {
             Random rng = new Random();
+            List<Species> survivors = new List<Species>();
+
             foreach (var species in SpeciesList)
             {
                 if (species.Members.Count > 0)
                 {
                     int index = rng.Next(species.Members.Count);
                     species.Representative = species.Members[index];
-                }
-                else
-                {
-                    // Species extinct
-                    species.Representative = null;
-                    SpeciesList.Remove(species);
+                    survivors.Add(species);
                 }
             }
+            SpeciesList = survivors;
         }
         public void ComputeOffspring()
         {
