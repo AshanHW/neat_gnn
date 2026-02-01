@@ -9,6 +9,7 @@ namespace NEAT_GNN.Core
     {
         public int Id { get; set; }
         public NodeType Type { get; set; }
+        public int Layer { get; set; }
     }
     public class ConnectionData
     {
@@ -544,7 +545,8 @@ namespace NEAT_GNN.Core
                 Nodes = genome.Nodes.Values.Select(n => new NodeData
                 {
                     Id = n.Id,
-                    Type = n.Type
+                    Type = n.Type,
+                    Layer = n.Layer,
                 }).ToList(),
                 Connections = genome.Connections.Select(c => new ConnectionData
                 {
@@ -599,6 +601,41 @@ namespace NEAT_GNN.Core
             {
                 LoadWeights(kvp.Key, kvp.Value);
             }
+        }
+
+        public Genome LoadGenomeFromFile(string path)
+        {
+            string json = File.ReadAllText(path);
+            var saved = JsonSerializer.Deserialize<SingleGenomeSave>(json);
+
+            InnovationTracker.currentInnovation = saved.GlobalInnovationId;
+
+            var nodes = new Dictionary<int, Node>();
+            foreach (var n in saved.Genome.Nodes)
+            {
+                Func<double, double> activation = n.Type == NodeType.Output ? ActivationFunctions.Sigmoid : ActivationFunctions.Linear;
+                nodes[n.Id] = new Node(n.Id, n.Type, n.Layer, activation);
+            }
+
+            List<Connection> connections = new List<Connection>();
+            foreach (var connData in saved.Genome.Connections)
+            {
+                Connection conn = new Connection(
+                    nodes[connData.InNode],
+                    nodes[connData.OutNode],
+                    connData.InnovationNumber,
+                    connData.Weight,
+                    connData.Enabled
+                ) { Enabled = connData.Enabled };
+
+                connections.Add(conn);
+            }
+            Genome genome = new Genome(
+                saved.Genome.ID, nodes, connections)
+            {
+                RawFitness = saved.Genome.RawFitness
+            };
+            return genome;
         }
     }
 }
